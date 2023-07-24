@@ -29,9 +29,49 @@ hmt.writevp16(0x08010C, 0)
 
 hmt.writevp16(0x0800C0, 0)
 hmt.writevp16(0x080972, 0)
-hmt.writevp16(0x081008, 0)
+hmt.writevpstr(0x004980,0)
 
-hmt.writevp16(0x08012A, 1)--Enable Fill key
+--Making user admin name in popup 0
+hmt.writevpstr(0x004980,NULL)
+hmt.writevpstr(0x004A00,NULL)
+
+--Making user admin status 0
+hmt.writevp16(0x082000, 0)
+hmt.writevp16(0x082002, 0)
+hmt.writevp16(0x082004, 0)
+hmt.writevp16(0x082006, 0)
+hmt.writevp16(0x082008, 0)
+hmt.writevp16(0x08200A, 0)
+hmt.writevp16(0x08200C, 0)
+hmt.writevp16(0x08200E, 0)
+hmt.writevp16(0x082010, 0)
+hmt.writevp16(0x082012, 0)
+hmt.writevp16(0x082014, 0)
+hmt.writevp16(0x082016, 0)
+hmt.writevp16(0x082018, 0)
+hmt.writevp16(0x08201A, 0)
+
+hmt.writevp16(0x089000, 0)
+
+--Making Page change keys in user access 0
+hmt.writevp16(0x082024, 0)
+hmt.writevp16(0x082026, 0)
+hmt.writevp16(0x082028, 0)
+
+--Making admin default
+hmt.writevp16(0x0800C8, 0)
+
+--Making fill/defog 0
+hmt.writevp16(0x08012A, 0)
+
+--Making stop 0
+hmt.writevp16(0x0890996, 0)
+
+--Making resume popup 0
+hmt.writevp16(0x089004, 0)
+
+
+--hmt.writevp16(0x08012A, 1)--Enable Fill key
 loop_speed=150
 
 twentySecTimer=0
@@ -41,6 +81,7 @@ PageChangeToHomeFlg=0
 
 PreBuzz=0
 PreFillDefog=0
+PrePageID=0
 
 local sendbuff = {0xAA,0x30,0x54,0x6F,0x70,0x77,0x61,0x79,0x20,0x48,0x4d,0x54,0x20,0x52,0x65,0x61,0x64,0x79,0x00,0xcc,0x33,0xc3,0x3c}
 hmt.uartsendbytes(sendbuff, 23)
@@ -48,12 +89,7 @@ hmt.uartsendbytes(sendbuff, 23)
 	local prev_val
 
 luamain = function(void)
-	MainBatt = hmt.readvp16(0x080030)
-    	if MainBatt >= 1 then
-        	hmt.writevp16(0x0809A2, 0)
-	else
-		hmt.writevp16(0x0809A2, 1)
-	end
+
 	RTCSec = hmt.readvpreg(0xFFFF15)--RTC Seconds
 	if RTCSec == PreRTCsec then
 	else
@@ -84,19 +120,34 @@ luamain = function(void)
 		PreFillDefog= hmt.readvp16(0x08012A)
 		hmt.writevp16(0x080974,1) -- Communication Faild Icon Enable
 		hmt.writevp16(0x080970,0)--Disable 
+		hmt.writevp16(0x089002,0)--Disable 
 		hmt.writevp16(0x081008,0)--Warning Key
 		hmt.writevp16(0x081000,0)--Buzz Mute 
 		hmt.writevp16(0x08012A,0)--Fill defog
 		if PageChangeToHomeFlg==0 then
+		PrePageID = hmt.readpage()
+		if PrePageID == 74 then
+		else
 		hmt.changepage(0)
+		end
 		PageChangeToHomeFlg=1
 		end
 	else
 		hmt.writevp16(0x080974,0)-- Communication Faild Icon Disable
-		hmt.writevp16(0x080970,1)
+		rst=hmt.readvp16(0x089000)
+		hmt.writevp16(0x089002,1)
+		if rst==1 then
+			hmt.writevp16(0x080970,1)
+		else
+			hmt.writevp16(0x080970,0)
+		end	
 		if PageChangeToHomeFlg==1 then
 			hmt.writevp16(0x081000,Pre1Buzz)
-			hmt.writevp16(0x08012A,1)
+			if rst==1 then
+				hmt.writevp16(0x08012A,1)
+			else
+				hmt.writevp16(0x08012A,0)
+			end
 		end
 		PageChangeToHomeFlg=0
 	end
@@ -186,6 +237,7 @@ luamain = function(void)
 		--if backlight < 60 then
 		hmt.writevpreg(0xFFFF21,backlight) 
 	end
+	
 
 return 0
 end
