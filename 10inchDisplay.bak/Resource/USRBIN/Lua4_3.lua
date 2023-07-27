@@ -70,6 +70,9 @@ hmt.writevp16(0x0890996, 0)
 --Making resume popup 0
 hmt.writevp16(0x089004, 0)
 
+--Making admin select default
+hmt.writevp16(0x0800C6, 0)
+
 
 --hmt.writevp16(0x08012A, 1)--Enable Fill key
 loop_speed=150
@@ -106,6 +109,29 @@ luamain = function(void)
 		--hmt.writevp16(0x080974,1)
 		Toogle=0
 		end 
+	end
+
+	T2_High = hmt.readvp16(0x080058) 
+    T2_Low = hmt.readvp16(0x08005C)
+    T2 = hmt.readvp16(0x080062)
+	if T2 ==1 then
+		if T2_High == 1 then
+			hmt.writevp16(0x0801B0, 1)
+		else
+			hmt.writevp16(0x0801B0, 0)
+		end
+	else
+		hmt.writevp16(0x0801B0, 0)
+	end
+
+	if T2 ==1 then
+		if T2_Low == 1 then
+			hmt.writevp16(0x0801B2, 1)
+		else
+			hmt.writevp16(0x0801B2, 0)
+		end
+	else
+		hmt.writevp16(0x0801B2, 0)
 	end
 
 	UIComm = hmt.readvp16(0x08100C)--RTC Blink 
@@ -162,6 +188,8 @@ luamain = function(void)
 	else
 		hmt.writevp16(0x080166, 1)
 	end
+	
+  
 
 	Th_dis = hmt.readvp16(0x080070)
 	if Th_dis == 1 then
