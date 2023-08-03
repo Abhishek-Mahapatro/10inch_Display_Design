@@ -29,9 +29,9 @@ hmt.writevp16(0x08010C, 0)
 
 hmt.writevp16(0x0800C0, 0)
 hmt.writevp16(0x080972, 0)
-hmt.writevpstr(0x004980,0)
 
 --Making user admin name in popup 0
+--hmt.writevpstr(0x004980,0)
 hmt.writevpstr(0x004980,NULL)
 hmt.writevpstr(0x004A00,NULL)
 
@@ -111,7 +111,7 @@ luamain = function(void)
 		end 
 	end
 
-	T2_High = hmt.readvp16(0x080058) 
+    T2_High = hmt.readvp16(0x080058) 
     T2_Low = hmt.readvp16(0x08005C)
     T2 = hmt.readvp16(0x080062)
 	if T2 ==1 then
