@@ -73,6 +73,9 @@ hmt.writevp16(0x089004, 0)
 --Making admin select default
 hmt.writevp16(0x0800C6, 0)
 
+--Making enable registor for main and battery 0
+hmt.writevp16(0x0809A2, 0)
+hmt.writevp16(0x0809A4, 0)
 
 --hmt.writevp16(0x08012A, 1)--Enable Fill key
 loop_speed=150
@@ -256,8 +259,8 @@ luamain = function(void)
 		
 	else
 		prev_val=val
-		if val <= 14 then
-			backlight = 9--9--84
+		if val <= 5 then
+			backlight = 5--9--84
 		else
 			local temp = val*63/100
 			backlight = math.ceil(temp)--floor
