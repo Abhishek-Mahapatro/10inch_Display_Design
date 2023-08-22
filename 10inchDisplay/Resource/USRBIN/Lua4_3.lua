@@ -51,7 +51,11 @@ hmt.writevp16(0x082016, 0)
 hmt.writevp16(0x082018, 0)
 hmt.writevp16(0x08201A, 0)
 
+--Read Stop Disable
 hmt.writevp16(0x089000, 0)
+
+--Read Defog Disable
+hmt.writevp16(0x089006, 0)
 
 --Making Page change keys in user access 0
 hmt.writevp16(0x082024, 0)
@@ -77,7 +81,20 @@ hmt.writevp16(0x0800C6, 0)
 hmt.writevp16(0x0809A2, 0)
 hmt.writevp16(0x0809A4, 0)
 
---hmt.writevp16(0x08012A, 1)--Enable Fill key
+hmt.writevp16(0x080996,0)
+
+--Making rd graph log enable 0
+hmt.writevp16(0x089008, 0)
+hmt.writevp16(0x08900A, 0)
+
+--Enable Fill key
+--hmt.writevp16(0x08012A, 1)
+
+--Making ther. staus enable 0
+hmt.writevp16(0x080972, 0)
+hmt.writevp16(0x08002C, 0)
+hmt.writevp16(0x080070, 0)
+
 loop_speed=150
 
 twentySecTimer=0
@@ -164,15 +181,22 @@ luamain = function(void)
 	else
 		hmt.writevp16(0x080974,0)-- Communication Faild Icon Disable
 		rst=hmt.readvp16(0x089000)
+		rst2=hmt.readvp16(0x089006)
+		rst3=hmt.readvp16(0x08900A)
 		hmt.writevp16(0x089002,1)
 		if rst==1 then
 			hmt.writevp16(0x080970,1)
 		else
 			hmt.writevp16(0x080970,0)
-		end	
+		end
+		if rst3==1 then
+			hmt.writevp16(0x089008,1)
+		else
+			hmt.writevp16(0x089008,0)
+		end
 		if PageChangeToHomeFlg==1 then
 			hmt.writevp16(0x081000,Pre1Buzz)
-			if rst==1 then
+			if rst2==1 then
 				hmt.writevp16(0x08012A,1)
 			else
 				hmt.writevp16(0x08012A,0)
@@ -260,7 +284,7 @@ luamain = function(void)
 	else
 		prev_val=val
 		if val <= 5 then
-			backlight = 5--9--84
+			backlight = 1--9--84
 		else
 			local temp = val*63/100
 			backlight = math.ceil(temp)--floor
