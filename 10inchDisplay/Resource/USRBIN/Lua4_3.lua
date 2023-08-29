@@ -20,13 +20,11 @@ hmt.writevp16(0x081018, 0)
 hmt.writevp16(0x081012, 0)
 hmt.writevp16(0x081010, 0)
 hmt.writevp16(0x08100E, 0)
-
 hmt.writevp16(0x080104, 0)
 hmt.writevp16(0x080106, 0)
 hmt.writevp16(0x080108, 0)
 hmt.writevp16(0x08010A, 0)
 hmt.writevp16(0x08010C, 0)
-
 hmt.writevp16(0x0800C0, 0)
 hmt.writevp16(0x080972, 0)
 
@@ -131,7 +129,8 @@ luamain = function(void)
 		end 
 	end
 
-    T2_High = hmt.readvp16(0x080058) 
+	--Making all touch responses for T2 disable or enable
+   	T2_High = hmt.readvp16(0x080058) 
     T2_Low = hmt.readvp16(0x08005C)
     T2 = hmt.readvp16(0x080062)
 	if T2 ==1 then
@@ -161,6 +160,7 @@ luamain = function(void)
 		CommTimeoutErrorCheck=0
 	end
 
+	--Checking Communication Failure
 	if CommTimeoutErrorCheck==4 then
 		PreBuzz 	= hmt.readvp16(0x081000)
 		PreFillDefog= hmt.readvp16(0x08012A)
@@ -216,8 +216,7 @@ luamain = function(void)
 		hmt.writevp16(0x080166, 1)
 	end
 	
-  
-
+ 	--Thermistor status display
 	Th_dis = hmt.readvp16(0x080070)
 	if Th_dis == 1 then
 		hmt.writevp16(0x08016C, 0)
@@ -277,6 +276,7 @@ luamain = function(void)
 	Buzz = hmt.readvp16(0x08003A)
 	hmt.writevpreg(0xFFFF20,Buzz*5)
 
+	--Backlight control
 	local backlight-- = 9	
     local val = hmt.readvp16(0x080038)
 	if prev_val == val then 
