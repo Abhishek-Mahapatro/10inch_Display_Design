@@ -215,8 +215,10 @@ luamain = function(void)
     T1_only = hmt.readvp16(0x080062)
 	if T1_only == 1 then
 		hmt.writevp16(0x080166, 0)
+		hmt.writevp16(0x08901C, 0)
 	else
 		hmt.writevp16(0x080166, 1)
+		hmt.writevp16(0x08901C, 1)
 	end
 	
  	--Thermistor status display
