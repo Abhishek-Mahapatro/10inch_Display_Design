@@ -28,6 +28,7 @@ hmt.writevp16(0x08010C, 0)
 hmt.writevp16(0x0800C0, 0)
 hmt.writevp16(0x080972, 0)
 
+hmt.writevp16(0x08901E, 0)
 --Making user admin name in popup 0
 --hmt.writevpstr(0x004980,0)
 hmt.writevpstr(0x004980,NULL)
@@ -110,6 +111,8 @@ hmt.uartsendbytes(sendbuff, 23)
 	local prev_val
 
 luamain = function(void)
+
+	
 
 	RTCSec = hmt.readvpreg(0xFFFF15)--RTC Seconds
 	if RTCSec == PreRTCsec then
@@ -220,8 +223,10 @@ luamain = function(void)
 	Th_dis = hmt.readvp16(0x080070)
 	if Th_dis == 1 then
 		hmt.writevp16(0x08016C, 0)
+		--hmt.writevp16(0x08901C, 1)
 	else
 		hmt.writevp16(0x08016C, 1)
+		--hmt.writevp16(0x08901C, 0)
 	end	
 
 	--Scheduled Fill Reminder 
