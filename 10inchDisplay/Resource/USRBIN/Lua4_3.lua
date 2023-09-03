@@ -215,10 +215,10 @@ luamain = function(void)
     T1_only = hmt.readvp16(0x080062)
 	if T1_only == 1 then
 		hmt.writevp16(0x080166, 0)
-		hmt.writevp16(0x08901C, 0)
+		--hmt.writevp16(0x08901C, 0)
 	else
 		hmt.writevp16(0x080166, 1)
-		hmt.writevp16(0x08901C, 1)
+		--hmt.writevp16(0x08901C, 1)
 	end
 	
  	--Thermistor status display
@@ -299,6 +299,24 @@ luamain = function(void)
 		--if backlight < 60 then
 		hmt.writevpreg(0xFFFF21,backlight) 
 	end
+
+
+--***************************************************************
+a1=hmt.readvpreg(0xFFFF23)
+a2=hmt.readvpreg(0xFFFF24)
+a3=hmt.readvpreg(0xFFFF25)
+a4=hmt.readvpreg(0xFFFF26)
+a5=hmt.readvpreg(0xFFFF27)
+a6=hmt.readvpreg(0xFFFF28)
+
+hmt.writevpstr(0x004A80,a1)
+hmt.writevpstr(0x004B00,a2)
+hmt.writevpstr(0x004B80,a3)
+hmt.writevpstr(0x004C00,a4)
+hmt.writevpstr(0x004C80,a5)
+hmt.writevpstr(0x004D00,a6)
+
+--***************************************************************
 	
 
 return 0
