@@ -118,7 +118,7 @@ local prev_val
 --**************************************** MAIN FUNCTION ****************************************
 luamain = function(void)
 
---************ Screen saver Start ***************
+--************ Screen saver Time ***************
 	screenSaverT = hmt.readvp16(0x08003C)
 	if screenSaverT == 0 then 
 		sth = 600
@@ -127,8 +127,9 @@ luamain = function(void)
 	elseif screenSaverT == 2 then
 		sth = 1800
 	else
+		sth = 65535
 	end
---************ Screen saver End ***************
+--************ Screen saver Time End ***************
 	pgid =hmt.readpage()
 
 	--************* Check communication time out and page change to home *************
@@ -142,7 +143,7 @@ luamain = function(void)
 		end
  		
  		--******** Screen Saver page start **********
-		if pgid==0x08 or pgid==0x11 or screenSaverT==3 then --or pgid==0x08 or pgid==0x11
+		if pgid==0x08 or pgid==0x11 or pgid==0x4A then --or pgid==0x08 or pgid==0x11 or screenSaverT==3
 			c=0
 		else
 			c=c+1
@@ -338,7 +339,7 @@ luamain = function(void)
 	else
 		prev_val=val
 		if val <= 5 then
-			backlight = 9--9--84
+			backlight = 4--9--84
 		else
 			local temp = val*63/100
 			backlight = math.ceil(temp)--floor
@@ -348,11 +349,18 @@ luamain = function(void)
 	end
 
 	--************* Making security button grey *************
-	security=hmt.readvp16(0x08202A)
+	security=hmt.readvp16(0x08900C)
 	if security == 0 then
 		hmt.writevp16(0x089026,1)
 	else
 		hmt.writevp16(0x089026,0)
+	end
+
+	findex=hmt.readvp16(0x080994)
+	if findex==3 then
+		hmt.writevp16(0x08902C,1)
+	else
+		hmt.writevp16(0x08902C,0)
 	end
 	
 return 0
