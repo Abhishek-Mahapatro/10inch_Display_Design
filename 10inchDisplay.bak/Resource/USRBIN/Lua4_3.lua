@@ -118,6 +118,7 @@ local prev_val
 --**************************************** MAIN FUNCTION ****************************************
 luamain = function(void)
 
+--[[
 --************ Screen saver Time ***************
 	screenSaverT = hmt.readvp16(0x08003C)
 	if screenSaverT == 0 then 
@@ -130,7 +131,10 @@ luamain = function(void)
 		sth = 65535
 	end
 --************ Screen saver Time End ***************
-	pgid =hmt.readpage()
+]]
+	pgid = hmt.readpage()
+	lid = hmt.readvp16(0x080014)
+	AFill = hmt.readvp16(0x08101C)
 
 	--************* Check communication time out and page change to home *************
 	RTCSec = hmt.readvpreg(0xFFFF15)--RTC Seconds
@@ -141,18 +145,25 @@ luamain = function(void)
 		else
 			CommTimeoutErrorCheck=CommTimeoutErrorCheck+1
 		end
- 		
- 		--******** Screen Saver page start **********
+
+--[[		
+ 		--******** Screen Saver page start **********		
 		if pgid==0x08 or pgid==0x11 or pgid==0x4A then --or pgid==0x08 or pgid==0x11 or screenSaverT==3
 			c=0
+			--hmt.writevpreg(0xFFFF21,backlight) 
 		else
 			c=c+1
 			hmt.writevp16(0x089024,c)
 			if c==sth then
-				hmt.changepage(0x24)		   
+				hmt.changepage(0x24)	
+				--hmt.writevpreg(0xFFFF21,1) 
+			else
+				--hmt.writevpreg(0xFFFF21,backlight) 
 			end
 		end
-		--******** Screen Saver page end **********
+		-******** Screen Saver page End **********
+]]
+
 		PreRTCsec=RTCSec
 		if Toogle ==0 then
 		--hmt.writevp16(0x080974,0)
@@ -179,9 +190,9 @@ luamain = function(void)
 
 	--**********Making all touch responses for T2 disable or enable**********
    	T2_High = hmt.readvp16(0x080058) 
-    T2_Low = hmt.readvp16(0x08005C)
-    T2 = hmt.readvp16(0x080062)
-    T2grey = hmt.readvp16(0x08901C)
+    	T2_Low = hmt.readvp16(0x08005C)
+    	T2 = hmt.readvp16(0x080062)
+    	T2grey = hmt.readvp16(0x08901C)
 	if T2 ==1 then
 		if T2_High == 1 then
 			hmt.writevp16(0x0801B0, 1)
@@ -258,7 +269,7 @@ luamain = function(void)
 
 	--hmt.writevp16(0x08008C,PreRTCsec)
 
-    T1_only = hmt.readvp16(0x080062)
+    	T1_only = hmt.readvp16(0x080062)
 	if T1_only == 1 then
 		hmt.writevp16(0x080166, 0)
 		--hmt.writevp16(0x08901C, 0)
@@ -356,11 +367,24 @@ luamain = function(void)
 		hmt.writevp16(0x089026,0)
 	end
 
+	--************ Making Cancel button enable in factory reset ***********
 	findex=hmt.readvp16(0x080994)
 	if findex==3 then
 		hmt.writevp16(0x08902C,1)
 	else
 		hmt.writevp16(0x08902C,0)
+	end
+
+	--************ Transition to home if alert come ***********
+	errC = hmt.readvp16(0x080222)
+	if pgid == 0x24 then
+		if errC>preErrC or lid==1 or AFill==1 then
+			hmt.changepage(0x00)
+			--c=0
+			preErrC=errC
+		end
+	else
+		preErrC=errC
 	end
 	
 return 0
