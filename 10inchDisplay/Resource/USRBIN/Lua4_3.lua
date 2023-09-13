@@ -163,6 +163,20 @@ luamain = function(void)
 		end
 		-******** Screen Saver page End **********
 ]]
+		--******** page change start **********
+		if pgid==0x00 or pgid==0x24 or pgid==0x4A then
+			c=0 
+		else
+			c=c+1
+			hmt.writevp16(0x089024,c)
+			if c==60 then
+				hmt.changepage(0x00)	
+				--hmt.writevpreg(0xFFFF21,1) 
+			else
+				--hmt.writevpreg(0xFFFF21,backlight) 
+			end
+		end
+		--******** page change end **********
 
 		PreRTCsec=RTCSec
 		if Toogle ==0 then
