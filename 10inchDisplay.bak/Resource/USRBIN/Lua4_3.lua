@@ -164,7 +164,7 @@ luamain = function(void)
 		-******** Screen Saver page End **********
 ]]
 		--******** page change start **********
-		if pgid==0x00 or pgid==0x24 or pgid==0x4A then
+		if pgid==0x00 or pgid==0x24 or pgid==0x4A or pgid==0x08 or pgid==0x11 then
 			c=0 
 		else
 			c=c+1
