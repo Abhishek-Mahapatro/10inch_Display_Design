@@ -135,6 +135,7 @@ luamain = function(void)
 	pgid = hmt.readpage()
 	lid = hmt.readvp16(0x080014)
 	AFill = hmt.readvp16(0x08101C)
+	Fact = hmt.readvp16(0x080992)
 
 	--************* Check communication time out and page change to home *************
 	RTCSec = hmt.readvpreg(0xFFFF15)--RTC Seconds
@@ -165,13 +166,12 @@ luamain = function(void)
 ]]
 		--******** page change start **********
 		if pgid==0x00 or pgid==0x24 or pgid==0x4A or pgid==0x08 or pgid==0x11 then
-			c=0 
+			c=0
 		else
 			c=c+1
-			hmt.writevp16(0x089024,c)
+			--hmt.writevp16(0x089024,c)
 			if c==60 then
 				hmt.changepage(0x00)	
-				--hmt.writevpreg(0xFFFF21,1) 
 			else
 				--hmt.writevpreg(0xFFFF21,backlight) 
 			end
