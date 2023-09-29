@@ -29,6 +29,10 @@ hmt.writevp16(0x0800C0, 0)
 hmt.writevp16(0x080972, 0)
 hmt.writevp16(0x08901E, 0)
 
+--***** Making Ln2 usages disable *****
+hmt.writevp16(0x08904E, 0)
+hmt.writevp16(0x089030, 0)
+
 --*****Making user admin name in popup 0*****
 --hmt.writevpstr(0x004980,0)
 
@@ -135,6 +139,10 @@ luamain = function(void)
 	pgid = hmt.readpage()
 	lid = hmt.readvp16(0x080014)
 	AFill = hmt.readvp16(0x08101C)
+	MFill = hmt.readvp16(0x08101E)
+	ADFog = hmt.readvp16(0x081020)
+	MDFog = hmt.readvp16(0x081022)
+	QChil = hmt.readvp16(0x081024)
 	Fact = hmt.readvp16(0x080992)
 
 	--************* Check communication time out and page change to home *************
@@ -411,7 +419,15 @@ luamain = function(void)
 		hmt.writevp16(0x089034,0x07FF)
 	else
 	end
-	
+
+	--************ LN2 Usages ***********
+	if AFill == 1 or MFill == 1 or ADFog == 1 or MDFog == 1 or QChil == 1 then
+		hmt.writevp16(0x089032,0)
+		--hmt.writevp16(0x08904E, 0)
+	else
+		hmt.writevp16(0x089032,1)
+		--hmt.writevp16(0x08904E, 0)
+	end
 return 0
 end
 --**************************************** MAIN LOOP ENDS HERE ****************************************
