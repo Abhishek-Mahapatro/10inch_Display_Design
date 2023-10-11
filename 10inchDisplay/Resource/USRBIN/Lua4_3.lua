@@ -333,18 +333,18 @@ luamain = function(void)
 	hmt.writevp16(0x080162, Hrs_v)
 	Hrs = hmt.readvp16(0x080154)
 	if Hrs == 1 then
-	hmt.writevp16(0x080162, Hrs_v)
-	hmt.writevp16(0x08099C, 0)
+		hmt.writevp16(0x080162, Hrs_v)
+		hmt.writevp16(0x08099C, 0)
 	else
 		hmt.writevp16(0x08099C, 1)
 		if Hrs_v >= 12 then 
 			--hmt.writevpstr(0x003300, "PM") 
 			if Hrs_v > 12 then 
-			hmt.writevp16(0x080162, (Hrs_v-12))
+				hmt.writevp16(0x080162, (Hrs_v-12))
 			end
 		else
-		hmt.writevp16(0x080162, Hrs_v)
-		--hmt.writevpstr(0x003300, "AM") 
+			hmt.writevp16(0x080162, Hrs_v)
+			--hmt.writevpstr(0x003300, "AM") 
 		end
 	end
 
