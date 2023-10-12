@@ -104,6 +104,9 @@ hmt.writevp16(0x0801A2,0)
 hmt.writevp16(0x0801A4,0)
 hmt.writevp16(0x0801A6,0)
 
+hmt.writevp16(0x089032,0)
+hmt.writevp16(0x08904E,0)
+
 loop_speed=150
 
 twentySecTimer=0
@@ -421,13 +424,27 @@ luamain = function(void)
 	end
 
 	--************ LN2 Usages ***********
+	countLn2 = hmt.readvp16(0x089058)
+	PreLn2usage = hmt.readvp16(0x08905A)
+	Ln2Usage = hmt.readvp16(0x089030)
 	if AFill == 1 or MFill == 1 or ADFog == 1 or MDFog == 1 or QChil == 1 then
 		hmt.writevp16(0x089032,0)
-		--hmt.writevp16(0x08904E, 0)
+		hmt.writevp16(0x08904E, 0)
 	else
-		hmt.writevp16(0x089032,1)
-		--hmt.writevp16(0x08904E, 0)
+		if countLn2 > 12 then
+			if Ln2Usage > (2*PreLn2usage) then
+				hmt.writevp16(0x089032,0)
+				hmt.writevp16(0x08904E,1)
+			else
+				hmt.writevp16(0x089032,1)
+				hmt.writevp16(0x08904E,0)
+			end
+		else
+			hmt.writevp16(0x089032,1)
+			hmt.writevp16(0x08904E,0)
+		end
 	end
+	
 return 0
 end
 --**************************************** MAIN LOOP ENDS HERE ****************************************
