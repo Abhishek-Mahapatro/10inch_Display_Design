@@ -215,9 +215,9 @@ luamain = function(void)
 
 	--**********Making all touch responses for T2 disable or enable**********
    	T2_High = hmt.readvp16(0x080058) 
-    	T2_Low = hmt.readvp16(0x08005C)
-    	T2 = hmt.readvp16(0x080062)
-    	T2grey = hmt.readvp16(0x08901C)
+    T2_Low = hmt.readvp16(0x08005C)
+    T2 = hmt.readvp16(0x080062)
+    T2grey = hmt.readvp16(0x08901C)
 	if T2 ==1 then
 		if T2_High == 1 then
 			hmt.writevp16(0x0801B0, 1)
@@ -407,6 +407,10 @@ luamain = function(void)
 			hmt.changepage(0x00)
 			--c=0
 			preErrC=errC
+		--[[
+		elseif errC<=preErrC then
+			preErrC=errC
+		]]
 		end
 	else
 		preErrC=errC
@@ -431,7 +435,6 @@ luamain = function(void)
 		hmt.writevp16(0x089032,0)
 		hmt.writevp16(0x08904E, 0)
 	else
-		if countLn2 > 12 then
 			if Ln2Usage > (2*PreLn2usage) then
 				hmt.writevp16(0x089032,0)
 				hmt.writevp16(0x08904E,1)
@@ -439,10 +442,6 @@ luamain = function(void)
 				hmt.writevp16(0x089032,1)
 				hmt.writevp16(0x08904E,0)
 			end
-		else
-			hmt.writevp16(0x089032,1)
-			hmt.writevp16(0x08904E,0)
-		end
 	end
 	
 return 0
