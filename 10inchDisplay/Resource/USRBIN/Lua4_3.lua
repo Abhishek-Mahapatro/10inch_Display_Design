@@ -107,6 +107,10 @@ hmt.writevp16(0x0801A6,0)
 hmt.writevp16(0x089032,0)
 hmt.writevp16(0x08904E,0)
 
+hmt.writevp16(0x0801B4,0)
+hmt.writevp16(0x0801B6,0)
+hmt.writevp16(0x0801B8,0)
+
 loop_speed=150
 
 twentySecTimer=0
@@ -444,6 +448,15 @@ luamain = function(void)
 			end
 	end
 	
+	--************ OFAF Enable ***********
+	nodeId = hmt.readvp16(0x080206)
+	if nodeId == 0 then
+		--hmt.writevp16(0x0801B4,1)
+		hmt.writevp16(0x08020A,1)
+	else
+		--hmt.writevp16(0x0801B4,0)
+		hmt.writevp16(0x08020A,0)
+	end
 return 0
 end
 --**************************************** MAIN LOOP ENDS HERE ****************************************
