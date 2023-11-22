@@ -111,6 +111,8 @@ hmt.writevp16(0x0801B4,0)
 hmt.writevp16(0x0801B6,0)
 hmt.writevp16(0x0801B8,0)
 
+hmt.writevp16(0x0801CC,0)
+
 loop_speed=150
 
 twentySecTimer=0
