@@ -111,8 +111,53 @@ hmt.writevp16(0x0801B4,0)
 hmt.writevp16(0x0801B6,0)
 hmt.writevp16(0x0801B8,0)
 
+--*****Making F/W update popups Disable *****
 hmt.writevp16(0x0801CC,0)
 hmt.writevp16(0x0801E4,0)
+hmt.writevp16(0x0801E0,0)
+hmt.writevp16(0x0801E2,0)
+
+--*****Making Default for OFAF grouping *****
+hmt.writevp16(0x080324,0)
+hmt.writevp16(0x080824,0)
+hmt.writevp16(0x080326,0)
+hmt.writevp16(0x0802E4,0)
+hmt.writevp16(0x0802E6,0)
+hmt.writevp16(0x0802E8,0)
+hmt.writevp16(0x0802EA,0)
+hmt.writevp16(0x0802EC,0)
+hmt.writevp16(0x0802EE,0)
+hmt.writevp16(0x0802F0,0)
+hmt.writevp16(0x0802F2,0)
+hmt.writevp16(0x0802F4,0)
+hmt.writevp16(0x0802F6,0)
+hmt.writevp16(0x0802F8,0)
+hmt.writevp16(0x0802FA,0)
+hmt.writevp16(0x0802FC,0)
+hmt.writevp16(0x0802FE,0)
+hmt.writevp16(0x080300,0)
+hmt.writevp16(0x080302,0)
+hmt.writevp16(0x080304,0)
+hmt.writevp16(0x080306,0)
+hmt.writevp16(0x080308,0)
+hmt.writevp16(0x08030A,0)
+hmt.writevp16(0x08030C,0)
+hmt.writevp16(0x08030E,0)
+hmt.writevp16(0x080310,0)
+hmt.writevp16(0x080312,0)
+hmt.writevp16(0x080314,0)
+hmt.writevp16(0x080316,0)
+hmt.writevp16(0x080318,0)
+hmt.writevp16(0x08031A,0)
+hmt.writevp16(0x08031C,0)
+hmt.writevp16(0x08031E,0)
+hmt.writevp16(0x080320,0)
+hmt.writevp16(0x080322,0)
+hmt.writevp16(0x080328,0)
+hmt.writevp16(0x08032A,0)
+hmt.writevp16(0x08032C,0)
+hmt.writevp16(0x08032E,0)
+
 
 loop_speed=150
 
@@ -157,7 +202,8 @@ luamain = function(void)
 
 	--************* Check communication time out and page change to home *************
 	RTCSec = hmt.readvpreg(0xFFFF15)--RTC Seconds
-	if RTCSec == PreRTCsec then
+	if RTCSec == PreRTCsec or pgid == 0x27 then
+        --CommTimeoutErrorCheck=0
 	else
 		if CommTimeoutErrorCheck == 4 then
 
