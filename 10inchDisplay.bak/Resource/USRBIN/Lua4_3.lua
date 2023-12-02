@@ -158,6 +158,26 @@ hmt.writevp16(0x08032A,0)
 hmt.writevp16(0x08032C,0)
 hmt.writevp16(0x08032E,0)
 
+--***** BIST Disable all vp*****
+hmt.writevp16(0x080330,0)
+hmt.writevp16(0x080332,0)
+hmt.writevp16(0x080334,0)
+hmt.writevp16(0x080336,0)
+hmt.writevp16(0x080338,0)
+hmt.writevp16(0x08033A,0)
+hmt.writevp16(0x08033C,0)
+hmt.writevp16(0x08033E,0)
+hmt.writevp16(0x080340,0)
+hmt.writevp16(0x080342,0)
+hmt.writevp16(0x080344,0)
+hmt.writevp16(0x080346,0)
+hmt.writevp16(0x080348,0)
+hmt.writevp16(0x08034A,0)
+hmt.writevp16(0x08034C,0)
+hmt.writevp16(0x08034E,0)
+hmt.writevp16(0x080350,0)
+hmt.writevp16(0x080352,0)
+
 
 loop_speed=150
 
@@ -506,6 +526,89 @@ luamain = function(void)
 		--hmt.writevp16(0x0801B4,0)
 		hmt.writevp16(0x08020A,0)
 	end
+
+	--***** BIST *****
+	last = hmt.readvp16(0x08034C)
+	Sram = hmt.readvp16(0x0801E6)
+	Flash = hmt.readvp16(0x0801E6)
+	Eeprom = hmt.readvp16(0x0801E6)
+	rtd1 = hmt.readvp16(0x0801E6)
+	rtd2 = hmt.readvp16(0x0801E6)
+	if pgid == 0x06 then
+		--hmt.writevp16(0x08034E,1)
+		-- hmt.writevp16(0x080350,0)
+
+		hmt.writevp16(0x080330,1)
+		hmt.writevp16(0x08033A,1)
+		hmt.delayms(1000)
+		hmt.writevp16(0x080330,0)
+		hmt.writevp16(0x080344,1)
+		hmt.delayms(300)
+
+		hmt.writevp16(0x080332,1)
+		hmt.writevp16(0x08033C,1)
+		hmt.delayms(1000)
+		hmt.writevp16(0x080332,0)
+		hmt.writevp16(0x080346,1)
+		hmt.delayms(300)
+
+		hmt.writevp16(0x080334,1)
+		hmt.writevp16(0x08033E,1)
+		hmt.delayms(1000)
+		hmt.writevp16(0x080334,0)
+		hmt.writevp16(0x080348,1)
+		hmt.delayms(300)
+
+		hmt.writevp16(0x080336,1)
+		hmt.writevp16(0x080340,1)
+		hmt.delayms(1000)
+		hmt.writevp16(0x080336,0)
+		hmt.writevp16(0x08034A,1)
+		hmt.delayms(300)
+
+		hmt.writevp16(0x080338,1)
+		hmt.writevp16(0x080342,1)
+		hmt.delayms(1000)
+		hmt.writevp16(0x080338,0)
+		hmt.writevp16(0x08034C,1)
+		hmt.delayms(50)
+		hmt.writevp16(0x08034E,0)
+		hmt.delayms(50)
+		hmt.writevp16(0x080350,1)
+	else
+		hmt.writevp16(0x080330,0)
+		hmt.writevp16(0x080332,0)
+		hmt.writevp16(0x080334,0)
+		hmt.writevp16(0x080336,0)
+		hmt.writevp16(0x080338,0)
+		hmt.writevp16(0x08033A,0)
+		hmt.writevp16(0x08033C,0)
+		hmt.writevp16(0x08033E,0)
+		hmt.writevp16(0x080340,0)
+		hmt.writevp16(0x080342,0)
+		hmt.writevp16(0x080344,0)
+		hmt.writevp16(0x080346,0)
+		hmt.writevp16(0x080348,0)
+		hmt.writevp16(0x08034A,0)
+		hmt.writevp16(0x08034C,0)
+		hmt.writevp16(0x08034E,0)
+		hmt.writevp16(0x080350,0)
+	end
+
+	if last==1 then
+		hmt.writevp16(0x080350,1)
+		hmt.writevp16(0x08034E,0)
+	else
+		hmt.writevp16(0x080350,0)
+		hmt.writevp16(0x08034E,1)
+	end
+
+	if (Sram==0 or Flash==0 or Eeprom==0) or (rtd1==0 and rtd2==0) then
+		hmt.writevp16(0x080352,1)
+	else
+		hmt.writevp16(0x080352,0)
+	end
+
 return 0
 end
 --**************************************** MAIN LOOP ENDS HERE ****************************************
