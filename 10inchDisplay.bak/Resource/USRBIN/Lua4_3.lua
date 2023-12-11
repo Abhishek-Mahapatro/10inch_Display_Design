@@ -179,6 +179,13 @@ hmt.writevp16(0x080350,0)
 hmt.writevp16(0x080352,0)
 hmt.writevp16(0x080354,0)
 
+-- BIST result
+hmt.writevp16(0x0801E6,1)
+hmt.writevp16(0x0801E8,1)
+hmt.writevp16(0x0801EA,1)
+hmt.writevp16(0x0801EC,1)
+hmt.writevp16(0x0801EE,1)
+
 
 loop_speed=150
 
@@ -588,7 +595,7 @@ luamain = function(void)
 		-- 	hmt.writevp16(0x08034E,1)
 		-- end
 
-		if (Sram==0 or Flash==0 or Eeprom==0) or (rtd1==0 and rtd2==0) then
+		if (Sram==0 or Flash==0) or (rtd1==0 and rtd2==0) then
 			hmt.writevp16(0x080352,1)
 			hmt.writevp16(0x080350,1)
 		else
