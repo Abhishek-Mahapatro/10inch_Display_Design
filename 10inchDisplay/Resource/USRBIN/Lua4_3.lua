@@ -120,7 +120,8 @@ hmt.writevp16(0x0801E2,0)
 --*****Making Default for OFAF grouping *****
 hmt.writevp16(0x080324,0)
 hmt.writevp16(0x080824,0)
-hmt.writevp16(0x080326,0)
+hmt.writevp16(0x080326,1)
+hmt.writevp16(0x080826,1)
 hmt.writevp16(0x0802E4,0)
 hmt.writevp16(0x0802E6,0)
 hmt.writevp16(0x0802E8,0)
@@ -153,7 +154,7 @@ hmt.writevp16(0x08031C,0)
 hmt.writevp16(0x08031E,0)
 hmt.writevp16(0x080320,0)
 hmt.writevp16(0x080322,0)
-hmt.writevp16(0x080328,0)
+hmt.writevp16(0x080328,1)
 hmt.writevp16(0x08032A,0)
 hmt.writevp16(0x08032C,0)
 hmt.writevp16(0x08032E,0)
@@ -257,7 +258,7 @@ luamain = function(void)
 		-******** Screen Saver page End **********
 ]]
 		--******** page change start **********
-		if pgid==0x00 or pgid==0x24 or pgid==0x4A or pgid==0x08 or pgid==0x11 then
+		if pgid==0x00 or pgid==0x24 or pgid==0x4A or pgid==0x08 or pgid==0x11 or pgid==0x33 or pgid==34 or pgid==0x06 then
 			c=0
 		else
 			c=c+1
