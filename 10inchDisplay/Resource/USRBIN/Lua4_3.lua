@@ -118,10 +118,10 @@ hmt.writevp16(0x0801E0,0)
 hmt.writevp16(0x0801E2,0)
 
 --*****Making Default for OFAF grouping *****
-hmt.writevp16(0x080324,0)
-hmt.writevp16(0x080824,0)
-hmt.writevp16(0x080326,1)
-hmt.writevp16(0x080826,1)
+--hmt.writevp16(0x080324,0)
+--hmt.writevp16(0x080824,0)
+--hmt.writevp16(0x080326,1)
+--hmt.writevp16(0x080826,1)
 hmt.writevp16(0x0802E4,0)
 hmt.writevp16(0x0802E6,0)
 hmt.writevp16(0x0802E8,0)
@@ -357,6 +357,7 @@ luamain = function(void)
 		hmt.writevp16(0x0801A6,0)		
 	end
 
+	Th=hmt.readvp16(0x080070)
 	--**********Making all touch responses for T2 disable or enable**********
    	T2_High = hmt.readvp16(0x080058) 
     T2_Low = hmt.readvp16(0x08005C)
@@ -670,18 +671,6 @@ luamain = function(void)
 			hmt.writevp16(0x08034C,0)
 		end
 
-		--6 DP
-		hmt.writevp16(0x080376,1)
-		hmt.delayms(500)
-		hmt.writevp16(0x080388,1)
-		hmt.delayms(200)
-
-		--7 THERMISTOR
-		hmt.writevp16(0x080378,1)
-		hmt.delayms(500)
-		hmt.writevp16(0x08038A,1)
-		hmt.delayms(200)
-
 		--10 GBP
 		hmt.writevp16(0x08037E,1)
 		hmt.delayms(500)
@@ -706,40 +695,43 @@ luamain = function(void)
 		hmt.writevp16(0x080396,1)
 		hmt.delayms(200)
 
+		--6 DP
+		hmt.writevp16(0x080376,1)
+		hmt.delayms(500)
+		hmt.writevp16(0x080388,1)
+		hmt.delayms(200)
+
 		--8 BATTERY
 		hmt.writevp16(0x08037A,1)
 		hmt.delayms(500)
 		hmt.writevp16(0x08038C,1)
+		hmt.delayms(200)
+
+		if(Th==1) then
+			--7 THERMISTOR
+			hmt.writevp16(0x080378,1)
+			hmt.delayms(500)
+			hmt.writevp16(0x08038A,1)
+			hmt.delayms(200)
+		else
+			hmt.writevp16(0x080378,0)
+			hmt.writevp16(0x08038A,0)
+		end
+
 		hmt.writevp16(0x08034E,0)
 		hmt.writevp16(0x080350,1)
 		hmt.delayms(200)
 
-		-- if last==1 then
-		-- 	hmt.writevp16(0x080350,1)
-		-- 	hmt.writevp16(0x08034E,0)
-		-- else
-		-- 	hmt.writevp16(0x080350,0)
-		-- 	hmt.writevp16(0x08034E,1)
-		-- end
-
-		-- if (rtd2==0 or thm==0 or battery==0 or eth==0 or wifi==0) then
-		-- 	hmt.writevp16(0x080352,1)
-		-- 	hmt.writevp16(0x080350,1)
-		-- else
-		-- 	hmt.writevp16(0x080352,0)
-		-- 	hmt.writevp16(0x080350,1)
-		-- end
-
-		if (rtd1==0 or dp==0 or gbp==0 or mfv==0) then
+		if (rtd1==0 or dp==0 or gbp==0 or mfv==0) then --Restart the system
 			hmt.writevp16(0x080352,0)
 			hmt.writevp16(0x080354,0)
 			hmt.writevp16(0x080356,1)
-		elseif(rtd2==0 or thm==0 or battery==0 or eth==0 or wifi==0) then
-			if (sd==0) then
+		elseif(eeprom==0 or rtd2==0 or thm==0 or battery==0 or eth==0 or wifi==0 or sd==0) then
+			if (sd==0) then  -- Warning message + User selection
 				hmt.writevp16(0x080352,1)
 				hmt.writevp16(0x080354,1)
 				hmt.writevp16(0x080356,0)
-			else
+			else     -- User Selection
 				hmt.writevp16(0x080352,1)
 				hmt.writevp16(0x080354,0)
 				hmt.writevp16(0x080356,0)
