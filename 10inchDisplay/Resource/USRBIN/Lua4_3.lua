@@ -238,6 +238,8 @@ hmt.writevp16(0x089060,0)
 hmt.writevp16(0x080326,1)
 hmt.writevp16(0x080404,0)
 
+hmt.writevp16(0x0803E8,0)
+
 --***** Sys Info *****
 -- edit=hmt.readvp16(0x080402)
 -- edit_en=hmt.readvp16(0x08900C)
@@ -292,8 +294,9 @@ luamain = function(void)
 	Fact = hmt.readvp16(0x080992)
 
 	--************* Check communication time out and page change to home *************
+	File_Read=hmt.readvp16(0x0803E8)
 	RTCSec = hmt.readvpreg(0xFFFF15)--RTC Seconds
-	if RTCSec == PreRTCsec or pgid == 0x27 or pgid== 0x06 then
+	if RTCSec == PreRTCsec or pgid == 0x27 or pgid== 0x06 or File_Read==1 then
         --CommTimeoutErrorCheck=0
 	else
 		if CommTimeoutErrorCheck == 4 then
