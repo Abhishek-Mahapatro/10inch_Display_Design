@@ -28,16 +28,18 @@ hmt.writevp16(0x08010C, 0)
 hmt.writevp16(0x0800C0, 0)
 hmt.writevp16(0x080972, 0)
 hmt.writevp16(0x08901E, 0)
+hmt.writevp16(0x0803EE, 0)
+hmt.writevp16(0x0803F0, 0)
 
 --***** Making Ln2 usages disable *****
 hmt.writevp16(0x08904E, 0)
-hmt.writevp16(0x089030, 0)
+hmt.writevp16(0x089032, 0)
 
 --***** Making user admin name in popup 0 *****
---hmt.writevpstr(0x004980,0)
+--hmt.writevpstr(0x004980, 0)
 
-hmt.writevpstr(0x004980,NULL)
-hmt.writevpstr(0x004A00,NULL)
+hmt.writevpstr(0x004980, NULL)
+hmt.writevpstr(0x004A00, NULL)
 
 --***** Making user admin status 0 *****
 hmt.writevp16(0x082000, 0)
@@ -85,7 +87,7 @@ hmt.writevp16(0x0800C6, 0)
 hmt.writevp16(0x0809A2, 0)
 hmt.writevp16(0x0809A4, 0)
 
-hmt.writevp16(0x080996,0)
+hmt.writevp16(0x080996, 0)
 
 --***** Making rd graph log enable 0 *****
 hmt.writevp16(0x089008, 0)
@@ -100,66 +102,66 @@ hmt.writevp16(0x08002C, 0)
 hmt.writevp16(0x080070, 0)
 
 --******Login page******
-hmt.writevp16(0x0801A2,0)
-hmt.writevp16(0x0801A4,0)
-hmt.writevp16(0x0801A6,0)
+hmt.writevp16(0x0801A2, 0)
+hmt.writevp16(0x0801A4, 0)
+hmt.writevp16(0x0801A6, 0)
 
-hmt.writevp16(0x089032,0)
-hmt.writevp16(0x08904E,0)
+hmt.writevp16(0x089032, 0)
+hmt.writevp16(0x08904E, 0)
 
-hmt.writevp16(0x0801B4,0)
-hmt.writevp16(0x0801B6,0)
-hmt.writevp16(0x0801B8,0)
+hmt.writevp16(0x0801B4, 0)
+hmt.writevp16(0x0801B6, 0)
+hmt.writevp16(0x0801B8, 0)
 
 --*****Making F/W update popups Disable *****
-hmt.writevp16(0x0801CC,0)
-hmt.writevp16(0x0801E4,0)
-hmt.writevp16(0x0801E0,0)
-hmt.writevp16(0x0801E2,0)
+hmt.writevp16(0x0801CC, 0)
+hmt.writevp16(0x0801E4, 0)
+hmt.writevp16(0x0801E0, 0)
+hmt.writevp16(0x0801E2, 0)
 
 --*****Making Default for OFAF grouping *****
 --hmt.writevp16(0x080324,0)
 --hmt.writevp16(0x080824,0)
 --hmt.writevp16(0x080326,1)
 --hmt.writevp16(0x080826,1)
-hmt.writevp16(0x0802E4,0)
-hmt.writevp16(0x0802E6,0)
-hmt.writevp16(0x0802E8,0)
-hmt.writevp16(0x0802EA,0)
-hmt.writevp16(0x0802EC,0)
-hmt.writevp16(0x0802EE,0)
-hmt.writevp16(0x0802F0,0)
-hmt.writevp16(0x0802F2,0)
-hmt.writevp16(0x0802F4,0)
-hmt.writevp16(0x0802F6,0)
-hmt.writevp16(0x0802F8,0)
-hmt.writevp16(0x0802FA,0)
-hmt.writevp16(0x0802FC,0)
-hmt.writevp16(0x0802FE,0)
-hmt.writevp16(0x080300,0)
-hmt.writevp16(0x080302,0)
-hmt.writevp16(0x080304,0)
-hmt.writevp16(0x080306,0)
-hmt.writevp16(0x080308,0)
-hmt.writevp16(0x08030A,0)
-hmt.writevp16(0x08030C,0)
-hmt.writevp16(0x08030E,0)
-hmt.writevp16(0x080310,0)
-hmt.writevp16(0x080312,0)
-hmt.writevp16(0x080314,0)
-hmt.writevp16(0x080316,0)
-hmt.writevp16(0x080318,0)
-hmt.writevp16(0x08031A,0)
-hmt.writevp16(0x08031C,0)
-hmt.writevp16(0x08031E,0)
-hmt.writevp16(0x080320,0)
-hmt.writevp16(0x080322,0)
-hmt.writevp16(0x080328,1)
-hmt.writevp16(0x08032A,0)
-hmt.writevp16(0x08032C,0)
-hmt.writevp16(0x08032E,0)
-hmt.writevp16(0x080560,0)
-hmt.writevp16(0x080060,0)
+hmt.writevp16(0x0802E4, 0)
+hmt.writevp16(0x0802E6, 0)
+hmt.writevp16(0x0802E8, 0)
+hmt.writevp16(0x0802EA, 0)
+hmt.writevp16(0x0802EC, 0)
+hmt.writevp16(0x0802EE, 0)
+hmt.writevp16(0x0802F0, 0)
+hmt.writevp16(0x0802F2, 0)
+hmt.writevp16(0x0802F4, 0)
+hmt.writevp16(0x0802F6, 0)
+hmt.writevp16(0x0802F8, 0)
+hmt.writevp16(0x0802FA, 0)
+hmt.writevp16(0x0802FC, 0)
+hmt.writevp16(0x0802FE, 0)
+hmt.writevp16(0x080300, 0)
+hmt.writevp16(0x080302, 0)
+hmt.writevp16(0x080304, 0)
+hmt.writevp16(0x080306, 0)
+hmt.writevp16(0x080308, 0)
+hmt.writevp16(0x08030A, 0)
+hmt.writevp16(0x08030C, 0)
+hmt.writevp16(0x08030E, 0)
+hmt.writevp16(0x080310, 0)
+hmt.writevp16(0x080312, 0)
+hmt.writevp16(0x080314, 0)
+hmt.writevp16(0x080316, 0)
+hmt.writevp16(0x080318, 0)
+hmt.writevp16(0x08031A, 0)
+hmt.writevp16(0x08031C, 0)
+hmt.writevp16(0x08031E, 0)
+hmt.writevp16(0x080320, 0)
+hmt.writevp16(0x080322, 0)
+hmt.writevp16(0x080328, 1)
+hmt.writevp16(0x08032A, 0)
+hmt.writevp16(0x08032C, 0)
+hmt.writevp16(0x08032E, 0)
+hmt.writevp16(0x080560, 0)
+hmt.writevp16(0x080060, 0)
 
 --***** BIST Disable all vp*****
 -- hmt.writevp16(0x080330,0)
@@ -168,36 +170,38 @@ hmt.writevp16(0x080060,0)
 -- hmt.writevp16(0x080336,0)
 -- hmt.writevp16(0x080338,0)
 
--- Disable all parameter name
-hmt.writevp16(0x08033A,0)
-hmt.writevp16(0x08033C,0)
-hmt.writevp16(0x08033E,0)
-hmt.writevp16(0x080340,0)
-hmt.writevp16(0x080342,0)
-hmt.writevp16(0x080376,0)
-hmt.writevp16(0x080378,0)
-hmt.writevp16(0x08037A,0)
-hmt.writevp16(0x08037C,0)
-hmt.writevp16(0x08037E,0)
-hmt.writevp16(0x080380,0)
-hmt.writevp16(0x080382,0)
-hmt.writevp16(0x080384,0)
-hmt.writevp16(0x080386,0)
--- Disable all result
-hmt.writevp16(0x080344,0)
-hmt.writevp16(0x080346,0)
-hmt.writevp16(0x080348,0)
-hmt.writevp16(0x08034A,0)
-hmt.writevp16(0x08034C,0)
-hmt.writevp16(0x080388,0)
-hmt.writevp16(0x08038A,0)
-hmt.writevp16(0x08038C,0)
-hmt.writevp16(0x08038E,0)
-hmt.writevp16(0x080390,0)
-hmt.writevp16(0x080392,0)
-hmt.writevp16(0x080394,0)
-hmt.writevp16(0x080396,0)
-hmt.writevp16(0x080398,0)
+-- Disable all BIST parameter name
+hmt.writevp16(0x08033A, 0)
+hmt.writevp16(0x08033C, 0)
+hmt.writevp16(0x08033E, 0)
+hmt.writevp16(0x080340, 0)
+hmt.writevp16(0x080342, 0)
+hmt.writevp16(0x080376, 0)
+hmt.writevp16(0x080378, 0)
+hmt.writevp16(0x08037A, 0)
+hmt.writevp16(0x08037C, 0)
+hmt.writevp16(0x08037E, 0)
+hmt.writevp16(0x080380, 0)
+hmt.writevp16(0x080382, 0)
+hmt.writevp16(0x080384, 0)
+hmt.writevp16(0x080386, 0)
+hmt.writevp16(0x0803FA, 0)
+-- Disable all BIST result
+hmt.writevp16(0x080344, 0)
+hmt.writevp16(0x080346, 0)
+hmt.writevp16(0x080348, 0)
+hmt.writevp16(0x08034A, 0)
+hmt.writevp16(0x08034C, 0)
+hmt.writevp16(0x080388, 0)
+hmt.writevp16(0x08038A, 0)
+hmt.writevp16(0x08038C, 0)
+hmt.writevp16(0x08038E, 0)
+hmt.writevp16(0x080390, 0)
+hmt.writevp16(0x080392, 0)
+hmt.writevp16(0x080394, 0)
+hmt.writevp16(0x080396, 0)
+hmt.writevp16(0x080398, 0)
+hmt.writevp16(0x0803FC, 0)
 -- Disable all notifications
 hmt.writevp16(0x08034E,0)
 hmt.writevp16(0x080350,0)
@@ -207,20 +211,22 @@ hmt.writevp16(0x080356,0)
 
 
 -- BIST result
-hmt.writevp16(0x0801E6,1)
-hmt.writevp16(0x0801E8,1)
-hmt.writevp16(0x0801EA,1)
-hmt.writevp16(0x0801EC,1)
-hmt.writevp16(0x0801EE,1)
-hmt.writevp16(0x0801F0,1)
-hmt.writevp16(0x0801F2,1)
-hmt.writevp16(0x0801F4,1)
-hmt.writevp16(0x0801F6,1)
-hmt.writevp16(0x0801F8,1)
-hmt.writevp16(0x0801FA,1)
-hmt.writevp16(0x0801FC,1)
-hmt.writevp16(0x0801FE,1)
-hmt.writevp16(0x08039A,1)
+hmt.writevp16(0x0801E6,3)
+hmt.writevp16(0x0801E8,3)
+hmt.writevp16(0x0801EA,3)
+hmt.writevp16(0x0801EC,3)
+hmt.writevp16(0x0801EE,3)
+hmt.writevp16(0x0801F0,3)
+hmt.writevp16(0x0801F2,3)
+hmt.writevp16(0x0801F4,3)
+hmt.writevp16(0x0801F6,3)
+hmt.writevp16(0x0801F8,3)
+hmt.writevp16(0x0801FA,3)
+hmt.writevp16(0x0801FC,3)
+hmt.writevp16(0x0801FE,3)
+hmt.writevp16(0x08039A,3)
+
+
 
 -- hmt.writevp16(0x080402,0)
 -- hmt.writevp16(0x080404,0)
@@ -270,6 +276,32 @@ local prev_val
 --**************************************** MAIN FUNCTION ****************************************
 luamain = function(void)
 
+	pgid = hmt.readpage()
+	lid = hmt.readvp16(0x080014)
+	AFill = hmt.readvp16(0x08101C)
+	MFill = hmt.readvp16(0x08101E)
+	ADFog = hmt.readvp16(0x081020)
+	MDFog = hmt.readvp16(0x081022)
+	QChil = hmt.readvp16(0x081024)
+	Fact = hmt.readvp16(0x080992)
+
+--************ LN2 Usages ***********
+	countLn2 = hmt.readvp16(0x089058)
+	PreLn2usage = hmt.readvp16(0x08905A)
+	Ln2Usage = hmt.readvp16(0x089030)
+	if AFill == 1 or MFill == 1 or ADFog == 1 or MDFog == 1 or QChil == 1 then
+		hmt.writevp16(0x089032, 0)
+		hmt.writevp16(0x08904E, 0)
+	else
+		if Ln2Usage > (2*PreLn2usage) then
+			hmt.writevp16(0x089032, 0)
+			hmt.writevp16(0x08904E, 1)
+		else
+			hmt.writevp16(0x089032, 1)
+			hmt.writevp16(0x08904E, 0)
+		end
+	end
+
 --[[
 --************ Screen saver Time ***************
 	screenSaverT = hmt.readvp16(0x08003C)
@@ -284,14 +316,6 @@ luamain = function(void)
 	end
 --************ Screen saver Time End ***************
 ]]
-	pgid = hmt.readpage()
-	lid = hmt.readvp16(0x080014)
-	AFill = hmt.readvp16(0x08101C)
-	MFill = hmt.readvp16(0x08101E)
-	ADFog = hmt.readvp16(0x081020)
-	MDFog = hmt.readvp16(0x081022)
-	QChil = hmt.readvp16(0x081024)
-	Fact = hmt.readvp16(0x080992)
 
 	--************* Check communication time out and page change to home *************
 	File_Read=hmt.readvp16(0x0803E8)
@@ -323,7 +347,7 @@ luamain = function(void)
 		-******** Screen Saver page End **********
 ]]
 		--******** page change start **********
-		if pgid==0x00 or pgid==0x24 or pgid==0x4A or pgid==0x08 or pgid==0x11 or pgid==0x33 or pgid==34 or pgid==0x06 then
+		if pgid==0x00 or pgid==0x24 or pgid==0x4A or pgid==0x08 or pgid==0x11 or pgid==0x33 or pgid==0x34 or pgid==0x06 then
 			c=0
 		else
 			c=c+1
@@ -335,7 +359,6 @@ luamain = function(void)
 			end
 		end
 		--******** page change end **********
-
 		PreRTCsec=RTCSec
 		if Toogle ==0 then
 		--hmt.writevp16(0x080974,0)
@@ -524,7 +547,7 @@ luamain = function(void)
 
 	--***********Backlight control**************
 	local backlight-- = 9	
-    	local val = hmt.readvp16(0x080038)
+    local val = hmt.readvp16(0x080038)
 	if prev_val == val then 
 	else
 		prev_val=val
@@ -581,22 +604,22 @@ luamain = function(void)
 	else
 	end
 
-	--************ LN2 Usages ***********
-	countLn2 = hmt.readvp16(0x089058)
-	PreLn2usage = hmt.readvp16(0x08905A)
-	Ln2Usage = hmt.readvp16(0x089030)
-	if AFill == 1 or MFill == 1 or ADFog == 1 or MDFog == 1 or QChil == 1 then
-		hmt.writevp16(0x089032,0)
-		hmt.writevp16(0x08904E, 0)
-	else
-			if Ln2Usage > (2*PreLn2usage) then
-				hmt.writevp16(0x089032,0)
-				hmt.writevp16(0x08904E,1)
-			else
-				hmt.writevp16(0x089032,1)
-				hmt.writevp16(0x08904E,0)
-			end
-	end
+	-- --************ LN2 Usages ***********
+	-- countLn2 = hmt.readvp16(0x089058)
+	-- PreLn2usage = hmt.readvp16(0x08905A)
+	-- Ln2Usage = hmt.readvp16(0x089030)
+	-- if AFill == 1 or MFill == 1 or ADFog == 1 or MDFog == 1 or QChil == 1 then
+	-- 	hmt.writevp16(0x089032,0)
+	-- 	hmt.writevp16(0x08904E, 0)
+	-- else
+	-- 		if Ln2Usage > (2*PreLn2usage) then
+	-- 			hmt.writevp16(0x089032,0)
+	-- 			hmt.writevp16(0x08904E,1)
+	-- 		else
+	-- 			hmt.writevp16(0x089032,1)
+	-- 			hmt.writevp16(0x08904E,0)
+	-- 		end
+	-- end
 	
 	--************ OFAF Enable ***********
 	nodeId = hmt.readvp16(0x080206)
@@ -610,8 +633,10 @@ luamain = function(void)
 
 	--***** BIST *****
 	last = hmt.readvp16(0x08034C)
+	
 	if pgid == 0x06 then
 		hmt.writevp16(0x08034E,1)
+		plum = hmt.readvp16(0x08035E)
 		sram = hmt.readvp16(0x0801E6)
 		flash = hmt.readvp16(0x0801E8)
 		eeprom = hmt.readvp16(0x0801EA)
@@ -629,46 +654,46 @@ luamain = function(void)
 
 		--1 SRAM
 		hmt.writevp16(0x08033A,1)
-		hmt.delayms(500)
+		hmt.delayms(300)
 		hmt.writevp16(0x080344,1)
-		hmt.delayms(200)
+		hmt.delayms(100)
 
 		--2 Flash
 		hmt.writevp16(0x08033C,1)
-		hmt.delayms(500)
+		hmt.delayms(300)
 		hmt.writevp16(0x080346,1)
-		hmt.delayms(200)
+		hmt.delayms(100)
 
 		--3 EEPROM
 		hmt.writevp16(0x08033E,1)
-		hmt.delayms(500)
+		hmt.delayms(300)
 		hmt.writevp16(0x080348,1)
-		hmt.delayms(200)
+		hmt.delayms(100)
 
 		--9 SD CARD
 		hmt.writevp16(0x08037C,1)
-		hmt.delayms(500)
+		hmt.delayms(300)
 		hmt.writevp16(0x08038E,1)
-		hmt.delayms(200)
+		hmt.delayms(100)
 
 		--14 SPI
 		hmt.writevp16(0x080386,1)
-		hmt.delayms(500)
+		hmt.delayms(300)
 		hmt.writevp16(0x080398,1)
-		hmt.delayms(200)
+		hmt.delayms(100)
 
 		--4 RTD1
 		hmt.writevp16(0x080340,1)
-		hmt.delayms(500)
+		hmt.delayms(300)
 		hmt.writevp16(0x08034A,1)
-		hmt.delayms(200)
+		hmt.delayms(100)
 
-		if(T2==1) then
-			--5 RTD2
+		--5 RTD2
+		if T2==1 then
 			hmt.writevp16(0x080342,1)
-			hmt.delayms(500)
+			hmt.delayms(300)
 			hmt.writevp16(0x08034C,1)
-			hmt.delayms(200)
+			hmt.delayms(100)
 		else
 			hmt.writevp16(0x080342,0)
 			hmt.writevp16(0x08034C,0)
@@ -676,61 +701,98 @@ luamain = function(void)
 
 		--10 GBP
 		hmt.writevp16(0x08037E,1)
-		hmt.delayms(500)
+		hmt.delayms(300)
 		hmt.writevp16(0x080390,1)
-		hmt.delayms(200)
+		hmt.delayms(100)
 
 		--11 MFV
 		hmt.writevp16(0x080380,1)
-		hmt.delayms(500)
+		hmt.delayms(300)
 		hmt.writevp16(0x080392,1)
-		hmt.delayms(200)
+		hmt.delayms(100)
 
 		--12 ETHERNET
 		hmt.writevp16(0x080382,1)
-		hmt.delayms(500)
+		hmt.delayms(300)
 		hmt.writevp16(0x080394,1)
-		hmt.delayms(200)
+		hmt.delayms(100)
 
 		--13 WIFI
 		hmt.writevp16(0x080384,1)
-		hmt.delayms(500)
+		hmt.delayms(300)
 		hmt.writevp16(0x080396,1)
-		hmt.delayms(200)
+		hmt.delayms(100)
 
 		--6 DP
 		hmt.writevp16(0x080376,1)
-		hmt.delayms(500)
+		hmt.delayms(300)
 		hmt.writevp16(0x080388,1)
-		hmt.delayms(200)
+		hmt.delayms(100)
+
+		--7 Battery
+		--8 Thermistor
+		if plum==0 then  -- No battery
+			hmt.writevp16(0x080378,0) --Disable Thm_Lower
+			hmt.writevp16(0x08038A,0) --Disable Thm_Lower_Res
+			hmt.writevp16(0x08037A,0) --Disable Battery
+			hmt.writevp16(0x08038C,0) --Disable Battery_Res
+			if Th==1 then
+				hmt.writevp16(0x0803FA,1) --Enable Thm_Upper
+				hmt.delayms(300)
+				hmt.writevp16(0x0803FC,1) --Enable Thm_Upper_Res
+				hmt.delayms(100)
+			else
+				hmt.writevp16(0x0803FA,0) --Disable Thm_Upper
+				hmt.writevp16(0x0803FC,0) --Disable Thm_Upper_Res
+			end
+			
+		else  -- With Battery
+			hmt.writevp16(0x0803FA,0) --Disable Thm_Upper
+			hmt.writevp16(0x0803FC,0) --Disable Thm_Upper_Res
+			hmt.writevp16(0x08037A,1) --Enable Battery
+			hmt.delayms(300)
+			hmt.writevp16(0x08038C,1) --Disable Battery
+			hmt.delayms(100)
+			if Th==1 then
+				hmt.writevp16(0x080378,1) --Enable Thm_Lower
+				hmt.delayms(300)
+				hmt.writevp16(0x08038A,1) --Enable Thm_Lower_Res
+				hmt.delayms(100)
+			else
+				hmt.writevp16(0x080378,0) --Disable Thm_Lower
+				hmt.writevp16(0x08038A,0) --Disable Thm_Lower_Res
+			end
+		end
+			
 
 		--8 BATTERY
-		hmt.writevp16(0x08037A,1)
-		hmt.delayms(500)
-		hmt.writevp16(0x08038C,1)
-		hmt.delayms(200)
+		-- hmt.writevp16(0x08037A,1)
+		-- hmt.delayms(300)
+		-- hmt.writevp16(0x08038C,1)
+		-- hmt.delayms(100)
 
-		if(Th==1) then
-			--7 THERMISTOR
-			hmt.writevp16(0x080378,1)
-			hmt.delayms(500)
-			hmt.writevp16(0x08038A,1)
-			hmt.delayms(200)
-		else
-			hmt.writevp16(0x080378,0)
-			hmt.writevp16(0x08038A,0)
-		end
+		-- if Th==1 then
+		-- 	--7 THERMISTOR
+		-- 	hmt.writevp16(0x080378,1)
+		-- 	hmt.delayms(300)
+		-- 	hmt.writevp16(0x08038A,1)
+		-- 	hmt.delayms(100)
+		-- else
+		-- 	hmt.writevp16(0x080378,0)
+		-- 	hmt.writevp16(0x08038A,0)
+		-- end
+
 
 		hmt.writevp16(0x08034E,0)
 		hmt.writevp16(0x080350,1)
-		hmt.delayms(200)
+		hmt.delayms(100)
 
-		if (rtd1==0 or dp==0 or gbp==0 or mfv==0) then --Restart the system
+		if rtd1==0 or dp==0 or gbp==0 or mfv==0 then --Restart the system
 			hmt.writevp16(0x080352,0)
 			hmt.writevp16(0x080354,0)
 			hmt.writevp16(0x080356,1)
-		elseif(eeprom==0 or rtd2==0 or thm==0 or battery==0 or eth==0 or wifi==0 or sd==0) then
-			if (sd==0) then  -- Warning message + User selection
+		elseif eeprom==0 or rtd2==0 or thm==0 or battery==0 or eth==0 or wifi==0 or sd==0 then
+			if sd==0 then  -- Warning message + User selection
 				hmt.writevp16(0x080352,1)
 				hmt.writevp16(0x080354,1)
 				hmt.writevp16(0x080356,0)
