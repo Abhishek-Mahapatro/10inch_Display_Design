@@ -323,7 +323,7 @@ luamain = function(void)
 	if RTCSec == PreRTCsec or pgid == 0x27 or pgid== 0x06 or File_Read==1 then
         --CommTimeoutErrorCheck=0
 	else
-		if CommTimeoutErrorCheck == 4 then
+		if CommTimeoutErrorCheck == 15 then
 
 		else
 			CommTimeoutErrorCheck=CommTimeoutErrorCheck+1
@@ -637,7 +637,7 @@ luamain = function(void)
 	if pgid == 0x06 then
 		hmt.writevp16(0x08034E,1)
 		plum = hmt.readvp16(0x08035E)
-		sram = hmt.readvp16(0x0801E6)
+		--sram = hmt.readvp16(0x0801E6)
 		flash = hmt.readvp16(0x0801E8)
 		eeprom = hmt.readvp16(0x0801EA)
 		rtd1 = hmt.readvp16(0x0801EC)
@@ -648,15 +648,15 @@ luamain = function(void)
 		sd = hmt.readvp16(0x0801F6)
 		gbp = hmt.readvp16(0x0801F8)
 		mfv = hmt.readvp16(0x0801FA)
-		eth = hmt.readvp16(0x0801FC)
-		wifi = hmt.readvp16(0x0801FE)
-		usb = hmt.readvp16(0x08039A)
+		--eth = hmt.readvp16(0x0801FC)
+		--wifi = hmt.readvp16(0x0801FE)
+		spi = hmt.readvp16(0x08039A)
 
 		--1 SRAM
-		hmt.writevp16(0x08033A,1)
-		hmt.delayms(300)
-		hmt.writevp16(0x080344,1)
-		hmt.delayms(100)
+		-- hmt.writevp16(0x08033A,1)
+		-- hmt.delayms(300)
+		-- hmt.writevp16(0x080344,1)
+		-- hmt.delayms(100)
 
 		--2 Flash
 		hmt.writevp16(0x08033C,1)
@@ -712,16 +712,16 @@ luamain = function(void)
 		hmt.delayms(100)
 
 		--12 ETHERNET
-		hmt.writevp16(0x080382,1)
-		hmt.delayms(300)
-		hmt.writevp16(0x080394,1)
-		hmt.delayms(100)
+		-- hmt.writevp16(0x080382,1)
+		-- hmt.delayms(300)
+		-- hmt.writevp16(0x080394,1)
+		-- hmt.delayms(100)
 
 		--13 WIFI
-		hmt.writevp16(0x080384,1)
-		hmt.delayms(300)
-		hmt.writevp16(0x080396,1)
-		hmt.delayms(100)
+		-- hmt.writevp16(0x080384,1)
+		-- hmt.delayms(300)
+		-- hmt.writevp16(0x080396,1)
+		-- hmt.delayms(100)
 
 		--6 DP
 		hmt.writevp16(0x080376,1)
@@ -787,25 +787,25 @@ luamain = function(void)
 		hmt.writevp16(0x080350,1)
 		hmt.delayms(100)
 
-		if rtd1==0 or dp==0 or gbp==0 or mfv==0 then --Restart the system
-			hmt.writevp16(0x080352,0)
-			hmt.writevp16(0x080354,0)
-			hmt.writevp16(0x080356,1)
-		elseif eeprom==0 or rtd2==0 or thm==0 or battery==0 or eth==0 or wifi==0 or sd==0 then
-			if sd==0 then  -- Warning message + User selection
-				hmt.writevp16(0x080352,1)
-				hmt.writevp16(0x080354,1)
-				hmt.writevp16(0x080356,0)
-			else     -- User Selection
-				hmt.writevp16(0x080352,1)
-				hmt.writevp16(0x080354,0)
-				hmt.writevp16(0x080356,0)
-			end
-		else
-			hmt.writevp16(0x080352,0)
-			hmt.writevp16(0x080354,0)
-			hmt.writevp16(0x080356,0)
-		end
+		-- if rtd1==0 or dp==0 or gbp==0 or mfv==0 then --Restart the system
+		-- 	hmt.writevp16(0x080352,0)
+		-- 	hmt.writevp16(0x080354,0)
+		-- 	hmt.writevp16(0x080356,1)
+		-- elseif eeprom==0 or rtd2==0 or thm==0 or battery==0 or sd==0 then
+		-- 	if sd==0 then  -- Warning message + User selection
+		-- 		hmt.writevp16(0x080352,1)
+		-- 		hmt.writevp16(0x080354,1)
+		-- 		hmt.writevp16(0x080356,0)
+		-- 	else     -- User Selection
+		-- 		hmt.writevp16(0x080352,1)
+		-- 		hmt.writevp16(0x080354,0)
+		-- 		hmt.writevp16(0x080356,0)
+		-- 	end
+		-- else
+		-- 	hmt.writevp16(0x080352,0)
+		-- 	hmt.writevp16(0x080354,0)
+		-- 	hmt.writevp16(0x080356,0)
+		-- end
 
 	else
 		hmt.writevp16(0x08033A,0)
