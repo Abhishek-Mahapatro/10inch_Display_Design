@@ -31,6 +31,9 @@ hmt.writevp16(0x08901E, 0)
 hmt.writevp16(0x0803EE, 0)
 hmt.writevp16(0x0803F0, 0)
 
+hmt.writevp16(0x08040C, 0) --Home DP faulty
+hmt.writevp16(0x080400, 1) --Home Thm
+
 --***** Making Ln2 usages disable *****
 hmt.writevp16(0x08904E, 0)
 hmt.writevp16(0x089032, 0)
