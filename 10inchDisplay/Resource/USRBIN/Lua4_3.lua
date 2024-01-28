@@ -417,7 +417,7 @@ luamain = function(void)
 
 	--************* Checking Communication Failure *************
 	--stRePop = hmt.readvp16(0x089004)
-	if CommTimeoutErrorCheck==4 then
+	if CommTimeoutErrorCheck==15 then
 		PreBuzz 	= hmt.readvp16(0x081000)
 		PreFillDefog= hmt.readvp16(0x08012A)
 		hmt.writevp16(0x080974,1) -- Communication Faild Icon Enable
@@ -622,14 +622,14 @@ luamain = function(void)
 	-- end
 	
 	--************ OFAF Enable ***********
-	nodeId = hmt.readvp16(0x080206)
-	if nodeId == 0 then
-		--hmt.writevp16(0x0801B4,1)
-		hmt.writevp16(0x08020A,1)
-	else
-		--hmt.writevp16(0x0801B4,0)
-		hmt.writevp16(0x08020A,0)
-	end
+	-- nodeId = hmt.readvp16(0x080206)
+	-- if nodeId == 0 then
+	-- 	--hmt.writevp16(0x0801B4,1)
+	-- 	hmt.writevp16(0x08020A,1)
+	-- else
+	-- 	--hmt.writevp16(0x0801B4,0)
+	-- 	hmt.writevp16(0x08020A,0)
+	-- end
 
 	--***** BIST *****
 	last = hmt.readvp16(0x08034C)
