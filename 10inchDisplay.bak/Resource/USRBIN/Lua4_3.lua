@@ -31,6 +31,10 @@ hmt.writevp16(0x08901E, 0)
 hmt.writevp16(0x0803EE, 0)
 hmt.writevp16(0x0803F0, 0)
 
+-- ***** Calibration touch *****
+hmt.writevp16(0x080410, 0)
+hmt.writevp16(0x08040E, 0)
+
 hmt.writevp16(0x08040C, 0) --Home DP faulty
 hmt.writevp16(0x080400, 1) --Home Thm
 
@@ -41,8 +45,16 @@ hmt.writevp16(0x089032, 0)
 --***** Making user admin name in popup 0 *****
 --hmt.writevpstr(0x004980, 0)
 
-hmt.writevpstr(0x004980, NULL)
-hmt.writevpstr(0x004A00, NULL)
+hmt.writevpstr(0x004980, nil)
+hmt.writevpstr(0x004A00, nil)
+hmt.writevpstr(0x004200, nil)
+hmt.writevpstr(0x004700, nil)
+hmt.writevpstr(0x004300, nil)
+hmt.writevpstr(0x004800, nil)
+hmt.writevpstr(0x004380, nil)
+hmt.writevpstr(0x004880, nil)
+hmt.writevpstr(0x004400, nil)
+hmt.writevpstr(0x004900, nil)
 
 --***** Making user admin status 0 *****
 hmt.writevp16(0x082000, 0)
@@ -295,7 +307,11 @@ luamain = function(void)
 	if AFill == 1 or MFill == 1 or ADFog == 1 or MDFog == 1 or QChil == 1 then
 		hmt.writevp16(0x089032, 0)
 		hmt.writevp16(0x08904E, 0)
+		hmt.writevp16(0x080410, 0)
+		hmt.writevp16(0x08040E, 1)
 	else
+		hmt.writevp16(0x080410, 1)
+		hmt.writevp16(0x08040E, 0)
 		if Ln2Usage > (2*PreLn2usage) then
 			hmt.writevp16(0x089032, 0)
 			hmt.writevp16(0x08904E, 1)
@@ -373,14 +389,14 @@ luamain = function(void)
 	end
 
 	if pgid==0x00 then
-		hmt.writevpstr(0x004200,null)
-		hmt.writevpstr(0x004700,null)
-		hmt.writevpstr(0x004300,null)
-		hmt.writevpstr(0x004800,null)
-		hmt.writevpstr(0x004380,null)
-		hmt.writevpstr(0x004880,null)
-		hmt.writevpstr(0x004400,null)
-		hmt.writevpstr(0x004900,null)
+		hmt.writevpstr(0x004200,nil)
+		hmt.writevpstr(0x004700,nil)
+		hmt.writevpstr(0x004300,nil)
+		hmt.writevpstr(0x004800,nil)
+		hmt.writevpstr(0x004380,nil)
+		hmt.writevpstr(0x004880,nil)
+		hmt.writevpstr(0x004400,nil)
+		hmt.writevpstr(0x004900,nil)
 		hmt.writevp16(0x0801A2,0)
 		hmt.writevp16(0x0801A4,0)
 		hmt.writevp16(0x0801A6,0)		
