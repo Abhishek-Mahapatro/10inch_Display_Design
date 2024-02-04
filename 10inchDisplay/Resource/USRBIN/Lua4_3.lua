@@ -341,7 +341,7 @@ luamain = function(void)
 		--******** page change start **********
 		if pgid==0x00 or pgid==0x24 or pgid==0x4A or pgid==0x08 or pgid==0x11 or pgid==0x33 or pgid==0x34 or pgid==0x06 or pgid==0x3B then
 			c=0
-		elseif pgid==0x3B or start_stop==1 then
+		elseif pgid==0x3B then
 			c=0
 		else
 			c=c+1
