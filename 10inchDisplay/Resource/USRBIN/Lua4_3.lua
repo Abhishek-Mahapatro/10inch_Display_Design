@@ -31,6 +31,10 @@ hmt.writevp16(0x08901E, 0)
 hmt.writevp16(0x0803EE, 0)
 hmt.writevp16(0x0803F0, 0)
 
+hmt.writevp16(0x089026,0)
+-- hmt.writevp16(0x08900C,0)
+
+hmt.writevp16(0x080412, 0)
 -- ***** Calibration touch *****
 hmt.writevp16(0x080410, 0)
 hmt.writevp16(0x08040E, 0)
@@ -299,6 +303,7 @@ luamain = function(void)
 	MDFog = hmt.readvp16(0x081022)
 	QChil = hmt.readvp16(0x081024)
 	Fact = hmt.readvp16(0x080992)
+	start_stop=hmt.readvp16(0x080412)
 
 --************ LN2 Usages ***********
 	countLn2 = hmt.readvp16(0x089058)
@@ -321,21 +326,6 @@ luamain = function(void)
 		end
 	end
 
---[[
---************ Screen saver Time ***************
-	screenSaverT = hmt.readvp16(0x08003C)
-	if screenSaverT == 0 then 
-		sth = 600
-	elseif screenSaverT == 1 then
-		sth = 1200
-	elseif screenSaverT == 2 then
-		sth = 1800
-	else
-		sth = 65535
-	end
---************ Screen saver Time End ***************
-]]
-
 	--************* Check communication time out and page change to home *************
 	File_Read=hmt.readvp16(0x0803E8)
 	RTCSec = hmt.readvpreg(0xFFFF15)--RTC Seconds
@@ -348,25 +338,10 @@ luamain = function(void)
 			CommTimeoutErrorCheck=CommTimeoutErrorCheck+1
 		end
 
---[[		
- 		--******** Screen Saver page start **********		
-		if pgid==0x08 or pgid==0x11 or pgid==0x4A then --or pgid==0x08 or pgid==0x11 or screenSaverT==3
-			c=0
-			--hmt.writevpreg(0xFFFF21,backlight) 
-		else
-			c=c+1
-			hmt.writevp16(0x089024,c)
-			if c==sth then
-				hmt.changepage(0x24)	
-				--hmt.writevpreg(0xFFFF21,1) 
-			else
-				--hmt.writevpreg(0xFFFF21,backlight) 
-			end
-		end
-		-******** Screen Saver page End **********
-]]
 		--******** page change start **********
-		if pgid==0x00 or pgid==0x24 or pgid==0x4A or pgid==0x08 or pgid==0x11 or pgid==0x33 or pgid==0x34 or pgid==0x06 then
+		if pgid==0x00 or pgid==0x24 or pgid==0x4A or pgid==0x08 or pgid==0x11 or pgid==0x33 or pgid==0x34 or pgid==0x06 or pgid==0x3B then
+			c=0
+		elseif pgid==0x3B or start_stop==1 then
 			c=0
 		else
 			c=c+1
@@ -493,15 +468,6 @@ luamain = function(void)
 		hmt.writevp16(0x08902E, 0)
 	end
 	
- 	-- --************* Thermistor status display *************
-	-- Th_dis = hmt.readvp16(0x080070)
-	-- if Th_dis == 1 then
-	-- 	hmt.writevp16(0x08016C, 0)
-	-- 	--hmt.writevp16(0x08901C, 1)
-	-- else
-	-- 	hmt.writevp16(0x08016C, 1)
-	-- 	--hmt.writevp16(0x08901C, 0)
-	-- end	
 
 	--************* Scheduled Fill Reminder *************
 	am_pm = hmt.readvp16(0x0805D6)
