@@ -38,6 +38,7 @@ hmt.writevp16(0x080412, 0)
 -- ***** Calibration touch *****
 hmt.writevp16(0x080410, 0)
 hmt.writevp16(0x08040E, 0)
+hmt.writevp16(0x080420, 0)--DP Fault Calibration
 
 hmt.writevp16(0x08040C, 0) --Home DP faulty
 hmt.writevp16(0x080400, 1) --Home Thm
@@ -352,7 +353,7 @@ luamain = function(void)
 		end
 
 		--******** page change start **********
-		if pgid==0x00 or pgid==0x24 or pgid==0x4A or pgid==0x08 or pgid==0x11 or pgid==0x33 or pgid==0x34 or pgid==0x06 or pgid==0x3B then
+		if pgid==0x00 or pgid==0x24 or pgid==0x4A or pgid==0x08 or pgid==0x11 or pgid==0x33 or pgid==0x34 or pgid==0x06 or pgid==0x3B or pgid==0x3C then
 			c=0
 		elseif pgid==0x3B then
 			c=0
