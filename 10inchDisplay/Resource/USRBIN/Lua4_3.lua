@@ -35,6 +35,7 @@ hmt.writevp16(0x089026,0)
 -- hmt.writevp16(0x08900C,0)
 
 hmt.writevp16(0x080412, 0)
+hmt.writevp16(0x080424, 0)
 -- ***** Calibration touch *****
 hmt.writevp16(0x080410, 0)
 hmt.writevp16(0x08040E, 0)
@@ -343,7 +344,7 @@ luamain = function(void)
 	--************* Check communication time out and page change to home *************
 	File_Read=hmt.readvp16(0x0803E8)
 	RTCSec = hmt.readvpreg(0xFFFF15)--RTC Seconds
-	if RTCSec == PreRTCsec or pgid == 0x27 or pgid== 0x06 or File_Read==1 or start_stop==1 or pgid==0x2E then
+	if RTCSec == PreRTCsec or pgid == 0x27 or pgid== 0x06 or File_Read==1 or start_stop==1 or pgid==0x2E or pgid==0x3D or pgid==0x3E then
         --CommTimeoutErrorCheck=0
 	else
 		if CommTimeoutErrorCheck == 15 then
@@ -355,7 +356,7 @@ luamain = function(void)
 		--******** page change start **********
 		if pgid==0x00 or pgid==0x24 or pgid==0x4A or pgid==0x08 or pgid==0x11 or pgid==0x33 or pgid==0x34 or pgid==0x06 or pgid==0x3B or pgid==0x3C then
 			c=0
-		elseif pgid==0x3B or pgid==0x2E then
+		elseif pgid==0x3B or pgid==0x2E or pgid==0x3D or pgid==0x3E then
 			c=0
 		else
 			c=c+1
